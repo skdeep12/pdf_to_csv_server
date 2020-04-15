@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Download CSV</h2>
+  <form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <label>Year ending at</label>
+    <input type="number" name="year"><br><br>
+    <button type="submit" >Download balance sheet in csv format</button>
+  </form>
+  {% if filename %}
+    <p>Uploaded file: {{ filename }}</a></p>
+  {% endif %}
+{% endblock %}

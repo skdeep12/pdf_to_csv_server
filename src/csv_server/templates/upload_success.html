@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if attribute %}
+    <p> Value of {{ attribute }} in {{ year }}: {{ attribute_value }}</p>
+  {% endif %}
+  <form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <button type="submit" onclick="window.open('download_csv')">Download csv</button>
+  </form>
+{% endblock %}
