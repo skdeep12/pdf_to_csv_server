@@ -16,7 +16,7 @@
         * 2 numbers means either left line item is present or right line item is present.
         * 4 numbers means both line items are present or it is a total row
             
-            1. if a entry is present which start with `To Line Item` then there are line items in row. so extract each line item.
+            1. if a entry is present which start with `To ` then there are line items in row. so extract each line item.
             2. If not, it is a total row then extract the patterns starting with `Total`.
             
   
