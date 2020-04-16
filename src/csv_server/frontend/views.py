@@ -1,16 +1,11 @@
 
-from django.shortcuts import render, redirect
-from rest_framework.views import APIView
-from rest_framework.reverse import reverse
-from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
-from django.urls import include, path
-from django.views.generic import TemplateView
-from django.core.files.storage import FileSystemStorage
 import os
+
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from django.http import HttpResponse, Http404
-from django.views.generic.edit import CreateView
+from django.shortcuts import render
+from django.views.generic import TemplateView
 
 from .forms import UploadForm
 from .pdf_to_csv import BrowserProcessor

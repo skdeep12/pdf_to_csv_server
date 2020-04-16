@@ -1,9 +1,10 @@
-from os import path
 import csv
+from os import path
+
 import pdftotext
-import argparse
-from .logger import log
+
 from .constants import *
+from .logger import log
 
 
 class PdfToCsvProcessor:
