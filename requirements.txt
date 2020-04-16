@@ -2,4 +2,3 @@ pdftotext==2.1.4
 Django==2.2.10
 djangorestframework==3.11.0
 django-environ==0.4.5
-wtforms
