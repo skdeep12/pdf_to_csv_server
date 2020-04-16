@@ -3,10 +3,10 @@
 - Assumptions about pdf format
 
   I have exracted the text from pdf file with pdf2text and then have assumed following things in order to parse the data
-  
-  1. First non empty row content is considered to be company name.
-  2. There is a row that contains 'Particulars' word that separates the company info from balance sheet line items. After   'Particulars' every row may have line items.
-  3. Then for every line item row, it can have zero or more columns.
+  1. The Balance sheet information is present on the first page of the pdf. And only the first page will be considered for text processing.
+  2. First non empty row content is considered to be company name.
+  3. There is a row that contains 'Particulars' word that separates the company info from balance sheet line items. After   'Particulars' every row may have line items.
+  4. Then for every line item row, it can have zero or more columns.
   
 - Parsing Algorithm
 
