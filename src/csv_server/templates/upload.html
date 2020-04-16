@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Upload</h2>
+  <h3>Upload a balance sheet</h3>
   <form method="post" enctype="multipart/form-data" >
     {% csrf_token %}
     <label>Query Variable</label>
-    <input type="text" name="query_variable"><br><br>
+    <input type="text" name="query_variable" ><br><br>
     <label>Query Year</label>
     <input type="number" name="query_year"><br><br>
       <label>Please upload balance sheet </label>

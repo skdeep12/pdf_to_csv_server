@@ -15,26 +15,29 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Company',
             fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=120, unique=True, verbose_name='company_name')),
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
             ],
         ),
         migrations.CreateModel(
             name='LineItem',
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=120, verbose_name='entry_name')),
                 ('isExpense', models.BooleanField(verbose_name='is_expense')),
+                ('company_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='frontend.Company')),
             ],
         ),
         migrations.CreateModel(
             name='Finances',
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('year', models.IntegerField(verbose_name='year')),
                 ('amount', models.DecimalField(decimal_places=2, max_digits=20, verbose_name='amount')),
-                ('company_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='backend.Company')),
-                ('line_item_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='backend.LineItem')),
+                ('line_item_id', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='frontend.LineItem')),
             ],
+            options={
+                'unique_together': {('line_item_id', 'year')},
+            },
         ),
     ]
