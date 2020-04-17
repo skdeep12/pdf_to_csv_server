@@ -18,7 +18,7 @@ class PdfToCsvProcessor:
                 rows = page1.split("\n")
                 years, header_info, processed_rows = PdfToCsvProcessor.process_line_items_for_balance_sheet(rows, True)
         else:
-            raise Exception("file does not exist" + file_name)
+            raise Exception("file does not exist " + file_name)
         with open(csv_file_path, "w+") as csv_file:
             writer = csv.writer(csv_file)
             for row in processed_rows:
@@ -41,16 +41,17 @@ class PdfToCsvProcessor:
             raise Exception("Particulars row not found, can not continue with parsing")
         elif header_page:
             header_info = rows[:i]
-        lines = rows[i+1:] # from next to particulars,line items are starting
+        lines = rows[i:] # from next to particulars,line items are starting
         if header_page:
             processed_rows.append([particulars_string, years[0], years[1]] * 2)
         for line in lines:
             processed_row = PdfToCsvProcessor.process_row(line)
-            #print(processed_row)
+            log.info(processed_row)
             if len(processed_row) > 0:
                 for i in range(len(processed_row)):  # remove all trailing and leading whitespace for each entry
                     processed_row[i] = processed_row[i].strip()
-                processed_rows.append(processed_row)
+                if "Total Rs." not in processed_row:
+                    processed_rows.append(processed_row)
         return years, header_info, processed_rows
 
     @staticmethod

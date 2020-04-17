@@ -19,3 +19,9 @@ class UploadForm(forms.Form):
 
     def process(self):
         pass
+
+
+class QueryForm(forms.Form):
+    company_name = forms.CharField(max_length=60)
+    query_variable = forms.CharField(max_length=60)
+    query_year = forms.IntegerField(validators=[MinValueValidator(1960), max_value_current_year])

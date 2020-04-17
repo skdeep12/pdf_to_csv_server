@@ -7,8 +7,11 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.views.generic import TemplateView
 
-from .forms import UploadForm
+from .forms import UploadForm, QueryForm
 from .pdf_to_csv import BrowserProcessor
+from .models import LineItem, Finances, Company
+
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class Home(TemplateView):
@@ -46,3 +49,26 @@ def download(request, filename):
             response['Content-Disposition'] = 'inline; filename=' + 'BalSheet.csv'
             return response
     raise Http404
+
+
+def query(request):
+    context = {}
+    if request.method == 'POST':
+        form = QueryForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            try:
+                company = Company.objects.get(name=cd['company_name'].strip())
+                line_item = LineItem.objects.get(name=cd['query_variable'].strip(),
+                                                 company_id=company)
+                concrete_line_item = Finances.objects.get(year=str(cd['query_year']).strip(), line_item_id=line_item)
+                context['company_name'] = cd['company_name']
+                context['attribute'] = cd['query_variable']
+                context['year'] = cd['query_year']
+                context['attribute_value'] = concrete_line_item.amount
+            except ObjectDoesNotExist as e:
+                context['error'] = "Queried data is not present in the database"
+            return render(request, 'query_success.html', context)
+        else:
+            context['error'] = form.errors
+    return render(request, 'query.html', context)

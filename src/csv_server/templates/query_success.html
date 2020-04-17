@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  {% if attribute %}
+    <p> Value of {{ attribute }} in {{ year }}: {{ attribute_value }}</p>
+  {% endif %}
+  {% if error %}
+        <p style="color:red;"> {{ error }}</a></p>
+  {% endif %}
+{% endblock %}

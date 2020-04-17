@@ -3,11 +3,12 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.urls import path
 
-from .views import Home, upload, download
+from .views import Home, upload, download, query
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
     path('upload/', upload, name='upload'),
+    path('query/', query, name='query'),
     url(r'^download/(?P<filename>.*)$', download, name='download')
 ]
 

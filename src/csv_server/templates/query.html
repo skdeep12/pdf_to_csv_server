@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h3>Query uploaded sheet</h3>
+  <form method="post" enctype="multipart/form-data" >
+    {% csrf_token %}
+    <label>Company Name</label>
+    <input type="text" name="company_name" ><br><br>
+    <label>Query Variable</label>
+    <input type="text" name="query_variable" ><br><br>
+    <label>Query Year</label>
+    <input type="number" name="query_year"><br><br>
+    <button type="submit" name="submit">Submit</button>
+  </form>
+    {% if error %}
+        <p> {{ error }}</a></p>
+    {% endif %}
+
+{% endblock %}

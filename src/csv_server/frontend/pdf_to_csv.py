@@ -41,7 +41,7 @@ class BrowserProcessor:
         response = dict()
         company_name = BrowserProcessor.get_company_name_from_header(header_info)
         response['file_id'] = csv_file_path.split('/')[-1]
-        dictionary = BrowserProcessor.convert_to_dictionary(rows, years)
+        dictionary = BrowserProcessor.convert_to_dictionary(rows[1:], years)   # skipping the particulars row
         company, created = Company.objects.get_or_create(name=company_name)
         for year, attributes in dictionary.items():
             for attribute, value in attributes.items():
@@ -92,7 +92,7 @@ class BrowserProcessor:
                 end_dict[line_item_without_prefix] = row[2], True
             if len(row[3]) is not 0:
                 line_item_without_prefix = row[3][3:]  # stripping 'By ' from start of the string
-                end_dict[line_item_without_prefix] = row[4], False
+                start_dict[line_item_without_prefix] = row[4], False
                 end_dict[line_item_without_prefix] = row[5], False
         attribute_dict[years[0]] = start_dict
         attribute_dict[years[1]] = end_dict
