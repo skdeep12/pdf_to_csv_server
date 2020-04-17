@@ -21,14 +21,13 @@ def upload(request):
         form = UploadForm(request.POST,request.FILES)
         if form.is_valid():
             cd = form.cleaned_data
-            print(cd)
             uploaded_file = request.FILES['document']
             fs = FileSystemStorage()
             fs.save(uploaded_file.name, uploaded_file)
             query_response, errors = \
                 BrowserProcessor.process_pdf_to_csv_request(uploaded_file.name,
-                                           cd['query_variable'].strip(),
-                                           str(cd['query_year']).strip())
+                                                            cd['query_variable'].strip(),
+                                                            str(cd['query_year']).strip())
             if errors is not None:
                 context['error'] = 'The Combination of ' + \
                                    cd['query_variable'] + ' and ' + str(cd['query_year']) + ' is not valid'

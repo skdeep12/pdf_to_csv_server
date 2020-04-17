@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'rest_framework',
-    'backend.apps.BackendConfig',
     'frontend.apps.FrontendConfig',
     'django.contrib.sessions',
     'django.contrib.messages',

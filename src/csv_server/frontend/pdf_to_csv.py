@@ -28,6 +28,9 @@ class BrowserProcessor:
         :return: response = {
                 'company_name': 'dehaat',
                 'file_id': 'xyz.csv' this file is stored at MEDIA_ROOT declared in settings.
+                'attribute': is query attribute queried by user
+                'year': is the year user has asked in the query
+                'attribute_value': is value returned by db query for 'attribute' and 'year' combination
             }
         """
         errors = []
@@ -61,6 +64,24 @@ class BrowserProcessor:
 
     @staticmethod
     def convert_to_dictionary(rows, years) -> dict:
+        """
+
+        :param rows: are processed rows and each row is of the form
+                                [line_item, amount, amount, line_item, amount, amount]
+        :param years: [start_year, end_year]
+        :return: a dictionary of the format dict = {
+            'start_year': { 'line_item': amount
+                            .
+                            .
+                            .
+                        },
+            'end_year': {'line_item': amount
+                            .
+                            .
+                            .
+                        }
+        }
+        """
         attribute_dict = {}
         start_dict = {}
         end_dict = {}
