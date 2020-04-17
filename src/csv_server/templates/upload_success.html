@@ -8,6 +8,6 @@
         <p style="color:red;"> {{ error }}</a></p>
   {% endif %}
   <a href="{% url 'download' file_id %}" download="BalSheet">
-    <button type="submit" >Download csv</button>
+    <button type="submit" name="download">Download csv</button>
   </a>
 {% endblock %}

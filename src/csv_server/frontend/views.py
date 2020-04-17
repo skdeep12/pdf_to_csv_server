@@ -31,8 +31,7 @@ def upload(request):
             if errors is not None:
                 context['error'] = 'The Combination of ' + \
                                    cd['query_variable'] + ' and ' + str(cd['query_year']) + ' is not valid'
-            else:
-                context.update(query_response)
+            context.update(query_response)
             return render(request, 'upload_success.html', context)
         else:
             context['error'] = form.errors

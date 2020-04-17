@@ -5,23 +5,6 @@ then
     python3.7 -m pip freeze
 fi
 
-postgres_ready() {
-python3.7 << END
-from sys import exit
-from psycopg2 import connect, OperationalError
-try:
-    connect(
-        dbname="$POSTGRES_DB",
-        user="$POSTGRES_USER",
-        password="$POSTGRES_PASSWORD",
-        host="postgres",
-    )
-except OperationalError as error:
-    print(error)
-    exit(-1)
-exit(0)
-END
-}
 cd csv_server
 if [ "$#" = 0 ]
 then

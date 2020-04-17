@@ -10,19 +10,18 @@ from .logger import log
 class PdfToCsvProcessor:
     @staticmethod
     def process(file_name, csv_file_path="BalSheet.csv"):
-        log.info("Processing file {0} ", file_name)
+        log.info("Processing file {0}".format(file_name))
         if path.isfile(file_name):
             with open(file_name, "rb") as f:
                 log.info("processing {0}".format(file_name))
                 page1 = pdftotext.PDF(f)[0]
                 rows = page1.split("\n")
-                years, header_info, processed_rows = PdfToCsvProcessor.process_line_items_for_balance_sheet(rows,True)
+                years, header_info, processed_rows = PdfToCsvProcessor.process_line_items_for_balance_sheet(rows, True)
         else:
             raise Exception("file does not exist" + file_name)
         with open(csv_file_path, "w+") as csv_file:
             writer = csv.writer(csv_file)
             for row in processed_rows:
-                print(row)
                 writer.writerow(row)
             log.info("wrote the csv data to file {0} for pdf file {1}".format(csv_file_path, file_name))
         return header_info, years, processed_rows
@@ -42,7 +41,7 @@ class PdfToCsvProcessor:
             raise Exception("Particulars row not found, can not continue with parsing")
         elif header_page:
             header_info = rows[:i]
-        lines = rows[i:]
+        lines = rows[i+1:] # from next to particulars,line items are starting
         if header_page:
             processed_rows.append([particulars_string, years[0], years[1]] * 2)
         for line in lines:
