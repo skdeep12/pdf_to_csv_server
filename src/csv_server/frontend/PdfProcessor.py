@@ -50,8 +50,7 @@ class PdfToCsvProcessor:
             if len(processed_row) > 0:
                 for i in range(len(processed_row)):  # remove all trailing and leading whitespace for each entry
                     processed_row[i] = processed_row[i].strip()
-                if "Total Rs." not in processed_row:
-                    processed_rows.append(processed_row)
+                processed_rows.append(processed_row)
         return years, header_info, processed_rows
 
     @staticmethod

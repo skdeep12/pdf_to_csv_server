@@ -86,6 +86,8 @@ class BrowserProcessor:
         start_dict = {}
         end_dict = {}
         for row in rows:
+            if "Total Rs." in row:  # not inserting total rows in database
+                continue
             if len(row[0]) is not 0:
                 line_item_without_prefix = row[0][3:]  # stripping 'To ' from start of the string
                 start_dict[line_item_without_prefix] = row[1], True
