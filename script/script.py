@@ -120,8 +120,8 @@ class CommandLineProcessor:
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='arg parser')
-    parser.add_argument('-f', type=str, help="path to pdf file")
+    parser = argparse.ArgumentParser(description='script to parse pdf file, produces csv in current directory')
+    parser.add_argument('-f', type=str, help="path to pdf file",required=True)
     args = parser.parse_args()
     CommandLineProcessor.process(args.f)
 
