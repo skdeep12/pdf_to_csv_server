@@ -20,3 +20,8 @@
             2. If not, it is a total row then extract the patterns starting with `Total`.
             
   
+```
+NOTE:- The applications assumes that data parsed from pdf under above assumptions is valid 
+and it will insert in the database. There are no secondary validations before inserting the data 
+to the database.
+```
