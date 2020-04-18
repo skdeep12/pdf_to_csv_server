@@ -25,3 +25,18 @@ NOTE:- The applications assumes that data parsed from pdf under above assumption
 and it will insert in the database. There are no secondary validations before inserting the data 
 to the database.
 ```
+
+# Run Book
+
+- script to convert pdf to csv is located at script/script.py.
+
+  Dependency for script is pdf2text. Please make sure it is available to script.
+  Run it with `python3 script.py -f /path/to/pdf/file`
+  It will produce the csv in current directory.
+
+
+
+- App providing upload and download capabilities
+
+  make sure docker-compose is available on your system
+  and then run `docker-compose up`. Now, access the app on `http://localhost:8000/`
