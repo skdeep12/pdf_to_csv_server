@@ -1,5 +1,5 @@
 # Notes
-
+- I have used sqlite db to store relational data.
 - Assumptions about pdf format
 
   I have exracted the text from pdf file with pdf2text and then have assumed following things in order to parse the data
