@@ -40,3 +40,6 @@ to the database.
 
   make sure docker-compose is available on your system
   and then run `docker-compose up`. Now, access the app on `http://localhost:8000/`
+
+# E-R Diagram
+![Entities](images/entity.png)
